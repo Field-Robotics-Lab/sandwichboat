@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<launch>
+	<arg name="robot_name" default="sandwich_0"/>
+	<arg name="namespace" default="sandwich_0"/>
+	<arg name="robot_locked" default="false"/>
+	<arg name="x" default="-532.0"/>
+	<arg name="y" default="160.0"/>
+	<arg name="z" default="0.0"/>
+	<arg name="P" default="0"/>
+  <arg name="R" default="0"/>
+  <arg name="Y" default="0"/>
+
+	<!-- Send robot urdf to param server -->
+	<param name="$(arg namespace)/robot_description" 
+  		command="$(find xacro)/xacro '$(find sandwich_description)/urdf/sandwich.xacro'
+    					 locked:=$(arg robot_locked)
+        	   	 namespace:=$(arg namespace)"/>
+
+  <node name="spawn_model" pkg="gazebo_ros" type="spawn_model" 
+          args="-x $(arg x) -y $(arg y) -z $(arg z) 
+                -R $(arg R) -P $(arg P) -Y $(arg Y)
+                -urdf -param $(arg namespace)/robot_description -model $(arg robot_name)"/>
+</launch>

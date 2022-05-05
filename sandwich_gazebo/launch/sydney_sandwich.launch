@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- Gazebo world to load -->
+  <arg name="world" default="$(find vrx_gazebo)/worlds/sydneyregatta.world" />
+  <!-- If true, run gazebo GUI -->
+  <arg name="gui" default="true" />
+  <!-- If true, run gazebo in verbose mode -->
+  <arg name="verbose" default="false"/>
+  <!-- If true, start in paused state -->
+  <arg name="paused"  default="false"/>
+  <!-- Start in a default namespace -->
+  <arg name="namespace" default="sandwich_0"/>
+  <!-- Set robot name for group model -->
+  <arg name="robot_name" default="sandwich_0"/>
+  <!-- Lock robot in place on start -->
+  <arg name="robot_locked" default="false" />
+  <!-- Control robot with joystick -->
+  <arg name="joy" default="true"/>
+  
+  <!-- Joystick control -->
+  <group if="$(arg joy)">
+    <include file="$(find vrx_gazebo)/launch/usv_joydrive.launch">
+      <arg name="namespace" value="$(arg namespace)"/>
+    </include>
+  </group>
+
+  <!-- Start Gazebo with the world file -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name"   value="$(arg world)"/>
+    <arg name="verbose"      value="$(arg verbose)"/>
+    <arg name="paused"       value="$(arg paused)"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui"          value="$(arg gui)" />
+  </include>
+
+  <group ns="robot0">
+    <include file="$(find sandwich_gazebo)/launch/sandwich_multi.launch">
+      <arg name="x" value="-532"/>
+      <arg name="y" value="162"/>
+      <arg name="z" value="0"/>
+      <arg name="P" value="0"/>
+      <arg name="R" value="0"/>
+      <arg name="Y" value="1"/>
+      <arg name="robot_locked" value="false"/>
+      <arg name="namespace" value="sandwich_0"/>
+      <arg name="robot_name" value="sandwich_0"/>
+    </include>
+  </group>
+  <group ns="robot1">
+    <include file="$(find sandwich_gazebo)/launch/sandwich_multi.launch">
+      <arg name="x" value="-532"/>
+      <arg name="y" value="172"/>
+      <arg name="z" value="0"/>
+      <arg name="P" value="0"/>
+      <arg name="R" value="0"/>
+      <arg name="Y" value="1"/>
+      <arg name="robot_locked" value="false"/>
+      <arg name="namespace" value="sandwich_1"/>
+      <arg name="robot_name" value="sandwich_1"/>
+    </include>
+  </group>
+</launch>
+
+

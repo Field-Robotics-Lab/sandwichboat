@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!-- Basic sandwich with gazebo plugins for dynamics -->
+<robot xmlns:xacro="http://ros.org/wiki/xacro"
+       name="SANDWICH">
+  <xacro:arg name="locked" default="false" />
+  <xacro:arg name="namespace" default="sandwich"/>
+
+  <!-- === The SANDWICH platform === -->
+  <xacro:include filename="$(find sandwich_description)/urdf/sandwich.xacro"/>
+
+  <xacro:sandwich_robot namespace="$(arg namespace)" locked/>
+</robot>
+

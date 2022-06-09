@@ -33,7 +33,7 @@
     <!-- Dummy joint, which usv_gazebo_thrust_plugin looks for -->
     <joint name="left_chasis_engine_joint" type="revolute">
       <axis xyz="1 0 0"/>
-      <origin rpy="0 0 0" xyz="-3.8 0.7 0.285"/>
+      <origin rpy="0 0 0" xyz="-3.8 1.2 0.285"/>
       <parent link="${namespace}/base_link"/>
       <child link="left_engine_link"/>
       <limit lower="${-pi}" upper="${pi}" effort="10" velocity="10"/>
@@ -79,7 +79,7 @@
     <!-- Dummy joint, which usv_gazebo_thrust_plugin looks for -->
     <joint name="right_chasis_engine_joint" type="revolute">
       <axis xyz="1 0 0"/>
-      <origin rpy="0 0 0" xyz="-3.8 -0.7 0.285"/>
+      <origin rpy="0 0 0" xyz="-3.8 -1.2 0.285"/>
       <parent link="${namespace}/base_link"/>
       <child link="right_engine_link"/>
       <limit lower="${-pi}" upper="${pi}" effort="10" velocity="10"/>

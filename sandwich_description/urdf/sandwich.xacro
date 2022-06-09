@@ -60,9 +60,9 @@
   <xacro:property name="pinger_namespace" value="$(arg pinger_namespace)" scope="global" />
   
   <xacro:wamv_camera name="front_left_camera"  x="3.8" y="0.25"  z="1.3" 
-  post_z_from="1.1" P="${radians(15)}" />
+  post_z_from="1.1" P="${radians(0)}" Y="${radians(10)}" />
   <xacro:wamv_camera name="front_right_camera" x="3.8" y="-0.25" z="1.3" 
-  post_z_from="1.1" P="${radians(15)}" />
+  post_z_from="1.1" P="${radians(0)}" Y="${radians(-10)}"/>
   <xacro:lidar name="front_lidar" type="16_beam" x="3.9" z="1.4" 
   P="${radians(8)}" post_z_from="1.1"/>
   <xacro:wamv_gps name="gps" x="-1.0" z="1.28" 

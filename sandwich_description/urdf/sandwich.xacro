@@ -51,6 +51,18 @@
     </gazebo>
   </xacro:if>
 
+<gazebo>
+    <plugin name="p3d_plugin_sandwich" filename="libgazebo_ros_p3d.so">
+      <bodyName>$(arg namespace)/base_link</bodyName>
+      <frameName>world</frameName>
+      <updateRate>10.0</updateRate>
+      <topicName>$(arg namespace)/sensors/p3d</topicName>
+      <xyzOffset>0 0 0</xyzOffset>
+      <rpyOffset>0 0 0</rpyOffset>
+      <gaussianNoise>0</gaussianNoise>
+    </plugin>
+  </gazebo>
+  
   <!-- Sensors -->
   <xacro:arg name="camera_namespace" default="cameras/"/>
   <xacro:arg name="sensor_namespace" default="sensors/"/>
